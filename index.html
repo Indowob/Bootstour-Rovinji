@@ -9,6 +9,7 @@
     --bg:#f4f7f9; --card:#ffffff; --ink:#132430; --muted:#5b7183;
     --line:#dbe5ec; --accent:#0d6e8c; --accent-soft:#e3f1f6;
     --warn:#8a5a00; --warn-soft:#fdf3dd; --danger:#9b2c2c; --danger-soft:#fceaea;
+    --ok:#1d6b4f; --ok-soft:#e2f3ec;
     --sea:#cfe6ef; --land:#e6e2d3;
   }
   @media (prefers-color-scheme: dark){
@@ -16,6 +17,7 @@
       --bg:#0e171d; --card:#16232b; --ink:#e6eef3; --muted:#93a8b6;
       --line:#24363f; --accent:#4bb8d8; --accent-soft:#14313d;
       --warn:#e0b457; --warn-soft:#2d2718; --danger:#f08a8a; --danger-soft:#31191a;
+      --ok:#6fd3a8; --ok-soft:#142d24;
       --sea:#1b333e; --land:#2f3a35;
     }
   }
@@ -23,14 +25,13 @@
     --bg:#0e171d; --card:#16232b; --ink:#e6eef3; --muted:#93a8b6;
     --line:#24363f; --accent:#4bb8d8; --accent-soft:#14313d;
     --warn:#e0b457; --warn-soft:#2d2718; --danger:#f08a8a; --danger-soft:#31191a;
+    --ok:#6fd3a8; --ok-soft:#142d24;
     --sea:#1b333e; --land:#2f3a35;
   }
   *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
+  body{margin:0; background:var(--bg); color:var(--ink);
     font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    -webkit-text-size-adjust:100%;
-  }
+    -webkit-text-size-adjust:100%}
   .wrap{max-width:780px; margin:0 auto; padding:24px 18px 64px}
   header{padding-block:28px 8px}
   .kicker{display:inline-block; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
@@ -43,48 +44,52 @@
   .fact dt{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 0 4px}
   .fact dd{margin:0; font-weight:650; font-size:16px}
   h2{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
-     margin:42px 0 14px; font-weight:700}
+     margin:44px 0 14px; font-weight:700}
   .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:14px}
   .variant{border:1px solid var(--line); border-radius:16px; background:var(--card); padding:20px; margin-bottom:18px}
+  .variant.pick{border-color:var(--ok); border-width:2px}
   .variant-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px}
   .variant h3{margin:0; font-size:21px; letter-spacing:-.01em}
   .badge{font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
     background:var(--accent-soft); color:var(--accent); padding:4px 10px; border-radius:20px; white-space:nowrap}
-  .variant > p.lead{color:var(--muted); margin:0 0 14px; font-size:15px}
-  .btn{display:inline-block; font-size:15px; font-weight:650; text-decoration:none; color:#fff;
-    background:var(--accent); border-radius:10px; padding:11px 16px; margin-bottom:18px}
-  .btn:hover{filter:brightness(1.08)}
-  ol.stops{list-style:none; counter-reset:s; padding:0; margin:0}
-  ol.stops li{counter-increment:s; padding:14px 0 14px 42px; border-top:1px solid var(--line); position:relative}
-  ol.stops li::before{content:counter(s); position:absolute; left:0; top:15px; width:27px; height:27px;
-    border-radius:50%; background:var(--accent-soft); color:var(--accent);
-    font-size:13px; font-weight:700; display:grid; place-items:center}
-  ol.stops .name{font-weight:650; font-size:17px}
-  ol.stops .leg{color:var(--muted); font-size:14px; font-variant-numeric:tabular-nums; margin-left:8px}
-  ol.stops p{margin:5px 0 9px; font-size:15px}
+  .badge.ok{background:var(--ok-soft); color:var(--ok)}
+  .variant > p.lead{color:var(--muted); margin:0 0 16px; font-size:15px}
+  .minifacts{display:grid; grid-template-columns:repeat(auto-fit,minmax(96px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:0 0 18px}
+  .minifacts div{background:var(--card); padding:10px 12px}
+  .minifacts dt{font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:0 0 2px}
+  .minifacts dd{margin:0; font-weight:700; font-size:15px; font-variant-numeric:tabular-nums}
+  svg.map{display:block; width:100%; height:auto; border-radius:10px; margin-bottom:6px}
+  .mapcap{color:var(--muted); font-size:12.5px; text-align:center; margin:0 0 18px}
   .maplink{display:inline-block; font-size:14px; font-weight:600; text-decoration:none;
     color:var(--accent); border:1px solid var(--accent); border-radius:8px; padding:5px 11px}
   .maplink:hover{background:var(--accent-soft)}
-  figure{margin:0 0 14px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px}
-  figure svg{display:block; width:100%; height:auto}
-  figcaption{color:var(--muted); font-size:13px; margin-top:10px; text-align:center}
+  .sched{width:100%; border-collapse:collapse; font-size:14.5px; margin-top:4px}
+  .sched th,.sched td{padding:9px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+  .sched th{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  .sched tr:last-child td{border-bottom:0}
+  .sched td.t{font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:650; width:1%}
+  .sched td.d{font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--muted); width:1%; text-align:right}
+  .sched tr.go td{color:var(--muted); font-style:italic}
   .note{border-radius:14px; padding:16px 20px; margin:14px 0;
     background:var(--warn-soft); border:1px solid var(--warn)}
   .note h3{margin:0 0 6px; font-size:16px; color:var(--warn)}
-  .note p{margin:0; font-size:15px}
-  .alert{background:var(--danger-soft); border:1px solid var(--danger)}
+  .note p{margin:0 0 8px; font-size:15px}
+  .note p:last-child{margin-bottom:0}
+  .alert{background:var(--danger-soft); border-color:var(--danger)}
   .alert h3{color:var(--danger)}
+  .good{background:var(--ok-soft); border-color:var(--ok)}
+  .good h3{color:var(--ok)}
   ul.rules{list-style:none; padding:0; margin:0}
   ul.rules li{background:var(--card); border:1px solid var(--line); border-radius:12px;
     padding:14px 18px; margin-bottom:10px; font-size:15px}
   ul.rules strong{display:block; margin-bottom:2px}
-  .food{background:var(--card); border:1px solid var(--line); border-radius:14px;
-    padding:16px 20px; margin-bottom:12px}
+  .food{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:12px}
   .food-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap}
   .food h3{margin:0; font-size:18px}
   .tag{font-size:11.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
     padding:3px 9px; border-radius:20px; white-space:nowrap}
-  .tag.yes{background:var(--accent-soft); color:var(--accent)}
+  .tag.yes{background:var(--ok-soft); color:var(--ok)}
   .tag.maybe{background:var(--warn-soft); color:var(--warn)}
   .tag.no{background:var(--danger-soft); color:var(--danger)}
   .food p{margin:7px 0 0; font-size:15px}
@@ -94,12 +99,13 @@
   .check li::before{content:""; position:absolute; left:0; top:16px; width:14px; height:14px;
     border:2px solid var(--accent); border-radius:4px}
   .tablewrap{overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:14px}
-  table{width:100%; border-collapse:collapse; font-size:15px}
-  th,td{padding:11px 16px; text-align:left; border-bottom:1px solid var(--line)}
-  th{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:700}
-  tr:last-child td{border-bottom:0}
-  td.n{font-variant-numeric:tabular-nums; white-space:nowrap}
-  tr.sum td{font-weight:700}
+  table.cmp{width:100%; border-collapse:collapse; font-size:15px}
+  table.cmp th,table.cmp td{padding:11px 14px; text-align:left; border-bottom:1px solid var(--line)}
+  table.cmp th{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:700}
+  table.cmp tr:last-child td{border-bottom:0}
+  table.cmp td.n{font-variant-numeric:tabular-nums; white-space:nowrap}
+  table.cmp tr.sum td{font-weight:700}
+  table.cmp .hi{color:var(--ok); font-weight:700}
   .cap{color:var(--muted); font-size:13.5px; margin-top:10px}
   .tel{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px}
   .tel a{display:block; background:var(--card); border:1px solid var(--line); border-radius:12px;
@@ -107,6 +113,7 @@
   .tel a:hover{border-color:var(--accent)}
   .tel .lbl{display:block; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:3px}
   .tel .val{font-weight:700; font-size:17px; color:var(--accent)}
+  .links{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
   footer{margin-top:44px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:14px}
   footer a{color:var(--accent)}
 </style>
@@ -121,152 +128,240 @@
 </header>
 
 <dl class="facts">
-  <div class="fact"><dt>Zeitfenster</dt><dd>10:00 – 18:00</dd></div>
+  <div class="fact"><dt>Auf dem Wasser</dt><dd>10:30 – 17:45</dd></div>
   <div class="fact"><dt>Wetter</dt><dd>klar, 22 °C</dd></div>
   <div class="fact"><dt>Wind</dt><dd>4–8 kn</dd></div>
   <div class="fact"><dt>Welle</dt><dd>0,1 m</dd></div>
 </dl>
 
-<h2>Übersicht</h2>
+<div class="note good">
+  <h3>Empfehlung: Variante B</h3>
+  <p>Der Limski kanal kostet euch <strong>1 Stunde 50 Minuten im 5-Knoten-Schleichgang</strong> — hin und zurück durch einen zehn Kilometer langen Fjord. Das ist landschaftlich schön, frisst aber fast zwei Stunden, die euch im Wasser fehlen.</p>
+  <p>Variante B lässt ihn weg und schenkt euch dafür <strong>6 Stunden 24 Minuten Aufenthalt statt 4 Stunden 13</strong> — bei knapp der Hälfte der Spritkosten. Für zwei Personen, die schnorcheln und schwimmen wollen, ist das die klar bessere Rechnung. Das Mittagessen kommt dann aus der eigenen Kühltasche.</p>
+</div>
 
-<figure>
-<svg viewBox="0 0 400 320" role="img" aria-label="Schematische Karte der Route rund um Rovinj">
-  <rect width="400" height="320" fill="var(--sea)" rx="8"/>
-  <path d="M400,320 L300,320 C302,302 320,292 311,276 L296,266 C281,256 291,241 286,231
-           L271,216 L291,201 L289,181 L301,166 L306,141 L301,119 L376,109 L379,99 L303,96
-           L301,81 L321,56 L351,31 L400,11 Z"
-        fill="var(--land)"/>
-  <ellipse cx="266" cy="178" rx="11" ry="7" fill="var(--land)"/>
-  <ellipse cx="218" cy="199" rx="13" ry="8" fill="var(--land)"/>
-  <ellipse cx="208" cy="186" rx="7" ry="5" fill="var(--land)"/>
-  <ellipse cx="240" cy="241" rx="8" ry="5" fill="var(--land)"/>
-  <circle cx="95" cy="232" r="5" fill="var(--land)"/>
-  <polyline points="300,285 95,232 215,193 340,103 266,178 300,285"
-            fill="none" stroke="var(--accent)" stroke-width="2.5"
-            stroke-dasharray="7 5" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>
-  <g font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">
-    <circle cx="300" cy="285" r="11" fill="var(--accent)"/><text x="300" y="289" fill="#fff">S</text>
-    <circle cx="95"  cy="232" r="11" fill="var(--accent)"/><text x="95"  y="236" fill="#fff">1</text>
-    <circle cx="215" cy="193" r="11" fill="var(--accent)"/><text x="215" y="197" fill="#fff">2</text>
-    <circle cx="340" cy="103" r="11" fill="var(--accent)"/><text x="340" y="107" fill="#fff">3</text>
-    <circle cx="266" cy="178" r="11" fill="var(--accent)"/><text x="266" y="182" fill="#fff">4</text>
-  </g>
-  <g font-size="10.5" fill="var(--ink)" font-family="system-ui,sans-serif" opacity=".75">
-    <text x="300" y="308" text-anchor="middle">Veštar</text>
-    <text x="95"  y="255" text-anchor="middle">Sv. Ivan</text>
-    <text x="196" y="217" text-anchor="end">Figarola</text>
-    <text x="356" y="128" text-anchor="middle">Limski kanal</text>
-    <text x="248" y="163" text-anchor="end">Sv. Katarina</text>
-    <text x="252" y="256" text-anchor="middle" opacity=".6">Banjole</text>
-    <text x="268" y="232" text-anchor="middle" opacity=".6">Rovinj</text>
-  </g>
-</svg>
-<figcaption>Variante A, schematisch und nicht maßstabsgetreu — zur Orientierung, nicht zur Navigation.</figcaption>
-</figure>
+<h2>Die drei Varianten im Vergleich</h2>
+
+<div class="tablewrap">
+<table class="cmp">
+  <thead><tr><th></th><th class="n">A · Große Runde</th><th class="n">B · Entspannt</th><th class="n">C · Genuss</th></tr></thead>
+  <tbody>
+    <tr><td>Strecke</td><td class="n">34 sm</td><td class="n">16 sm</td><td class="n">28 sm</td></tr>
+    <tr><td>Reine Fahrzeit</td><td class="n">3:02 h</td><td class="n hi">0:51 h</td><td class="n">2:39 h</td></tr>
+    <tr><td>Aufenthalt gesamt</td><td class="n">4:13 h</td><td class="n hi">6:24 h</td><td class="n">4:36 h</td></tr>
+    <tr><td>Badestopps</td><td class="n">3</td><td class="n hi">4</td><td class="n">1</td></tr>
+    <tr><td>Restaurant</td><td class="n">ja</td><td class="n">nein</td><td class="n">ja, 2 h</td></tr>
+    <tr><td>Delfinchance</td><td class="n">hoch</td><td class="n">hoch</td><td class="n">gering</td></tr>
+    <tr><td>Sprit</td><td class="n">~48 l · 80 €</td><td class="n hi">~24 l · 40 €</td><td class="n">~39 l · 65 €</td></tr>
+    <tr class="sum"><td>Boot + Sprit</td><td class="n">~330 €</td><td class="n hi">~290 €</td><td class="n">~315 €</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="cap">Rechenmodell: 20 kn Marschfahrt bei 25 l/h, 6 kn im Limski kanal bei 8 l/h, Eurosuper 95 zu 1,67 €/l. Alle Zeiten ab 10:30 Ablegen bis 17:45 Rückgabe, also 7 Stunden 15 Minuten auf dem Wasser.</p>
 
 <h2>Variante A — die große Runde</h2>
 
 <div class="variant">
   <div class="variant-head">
     <h3>Sveti Ivan, Inseln und Limski kanal</h3>
-    <span class="badge">25 sm · 2,5 h Fahrt</span>
+    <span class="badge">34 sm</span>
   </div>
-  <p class="lead">Das volle Programm: offenes Wasser für die Delfinchance, türkiser Inselkanal zum Schwimmen, Fjord mit Mittagsstopp.</p>
+  <p class="lead">Alles einmal: offenes Wasser für die Delfinchance, türkiser Inselkanal, Fjord mit Mittagessen. Der Preis dafür sind drei Stunden am Steuer.</p>
 
-  <a class="btn" href="https://www.google.com/maps/dir/Camping+Ve%C5%A1tar+Rovinj/Sveti+Ivan+na+Pu%C4%8Dini/Otok+Figarola+Rovinj/Limski+kanal/Otok+Sveta+Katarina+Rovinj/Camping+Ve%C5%A1tar+Rovinj" target="_blank" rel="noopener">Gesamte Route A auf Google Maps</a>
+  <svg class="map" viewBox="0 0 400 320" role="img" aria-label="Schematische Karte Variante A">
+    <rect width="400" height="320" fill="var(--sea)"/>
+    <path d="M400,320 L300,320 C302,302 320,292 311,276 L296,266 C281,256 291,241 286,231
+             L271,216 L291,201 L289,181 L301,166 L306,141 L301,119 L376,109 L379,99 L303,96
+             L301,81 L321,56 L351,31 L400,11 Z" fill="var(--land)"/>
+    <ellipse cx="266" cy="178" rx="11" ry="7" fill="var(--land)"/>
+    <ellipse cx="218" cy="199" rx="13" ry="8" fill="var(--land)"/>
+    <ellipse cx="208" cy="186" rx="7" ry="5" fill="var(--land)"/>
+    <ellipse cx="240" cy="241" rx="8" ry="5" fill="var(--land)"/>
+    <circle cx="95" cy="232" r="5" fill="var(--land)"/>
+    <polyline points="300,285 95,232 215,193 300,110 352,104 300,110 266,178 300,285"
+      fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="7 5"
+      stroke-linejoin="round" stroke-linecap="round"/>
+    <g font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">
+      <circle cx="300" cy="285" r="11" fill="var(--accent)"/><text x="300" y="289" fill="#fff">S</text>
+      <circle cx="95"  cy="232" r="11" fill="var(--accent)"/><text x="95"  y="236" fill="#fff">1</text>
+      <circle cx="215" cy="193" r="11" fill="var(--accent)"/><text x="215" y="197" fill="#fff">2</text>
+      <circle cx="352" cy="104" r="11" fill="var(--accent)"/><text x="352" y="108" fill="#fff">3</text>
+      <circle cx="266" cy="178" r="11" fill="var(--accent)"/><text x="266" y="182" fill="#fff">4</text>
+    </g>
+    <g font-size="10.5" fill="var(--ink)" font-family="system-ui,sans-serif" opacity=".78">
+      <text x="300" y="308" text-anchor="middle">Veštar</text>
+      <text x="95"  y="255" text-anchor="middle">Sv. Ivan</text>
+      <text x="196" y="215" text-anchor="end">Figarola</text>
+      <text x="352" y="130" text-anchor="middle">Lim · Restaurants</text>
+      <text x="248" y="163" text-anchor="end">Sv. Katarina</text>
+      <text x="272" y="234" text-anchor="middle" opacity=".55">Rovinj</text>
+    </g>
+  </svg>
+  <p class="mapcap">Schematisch, nicht maßstabsgetreu. Zur Orientierung, nicht zur Navigation.</p>
 
-  <ol class="stops">
-    <li>
-      <span class="name">Sveti Ivan na Pučini</span><span class="leg">6 sm · 20 Min.</span>
-      <p>Leuchtturminsel im offenen Wasser westlich von Rovinj. Der Delfin-Stopp — Große Tümmler sind hier draußen unterwegs, und am Vormittag stehen die Chancen am besten. Rund um den Felssockel Sicht bis 15 Meter: der beste Schnorchelplatz der Runde, weil er eben nicht am Strand liegt.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sveti+Ivan+na+Pu%C4%8Dini+lighthouse" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Figarola &amp; Crveni otok</span><span class="leg">4 sm · 15 Min.</span>
-      <p>Der flache Kanal zwischen Sveti Andrija und Maškin ist das Türkiswasser. Sandiger Grund, windgeschützt, ideal zum Ankern. Hier lohnt der längste Stopp des Tages.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Figarola+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Limski kanal</span><span class="leg">7 sm · 30 Min.</span>
-      <p>Landschaftlich das Highlight: schmaler Fjord mit steilen bewaldeten Hängen, völlig anderes Gefühl als offene See. Hinten am Kai liegen Konobas mit Anlegemöglichkeit und den berühmten Austern direkt aus dem Wasser. Guter Mittagsstopp.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Limski+kanal" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Sveta Katarina</span><span class="leg">7 sm · 25 Min.</span>
-      <p>Letzter Badestopp mit Blick auf die Altstadtsilhouette. Von hier sind es nur noch drei Seemeilen zurück nach Veštar.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Sveta+Katarina+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-  </ol>
+  <dl class="minifacts">
+    <div><dt>Fahrzeit</dt><dd>3:02 h</dd></div>
+    <div><dt>Aufenthalt</dt><dd>4:13 h</dd></div>
+    <div><dt>Sprit</dt><dd>~80 €</dd></div>
+  </dl>
+
+  <table class="sched">
+    <thead><tr><th>Zeit</th><th>Station</th><th>Dauer</th></tr></thead>
+    <tbody>
+      <tr class="go"><td class="t">10:30</td><td>ab Veštar</td><td class="d">22 min</td></tr>
+      <tr><td class="t">10:52</td><td><strong>Sveti Ivan na Pučini</strong> — schnorcheln, Delfine</td><td class="d">1:00 h</td></tr>
+      <tr class="go"><td class="t">11:52</td><td>weiter</td><td class="d">10 min</td></tr>
+      <tr><td class="t">12:02</td><td><strong>Figarola</strong> — baden</td><td class="d">0:45 h</td></tr>
+      <tr class="go"><td class="t">12:47</td><td>weiter, ab 13:02 im Kanal mit 5 kn</td><td class="d">69 min</td></tr>
+      <tr><td class="t">13:56</td><td><strong>Limski kanal</strong> — Mittagessen</td><td class="d">1:45 h</td></tr>
+      <tr class="go"><td class="t">15:41</td><td>zurück durch den Kanal</td><td class="d">69 min</td></tr>
+      <tr><td class="t">16:50</td><td><strong>Sveta Katarina</strong> — letztes Bad</td><td class="d">0:43 h</td></tr>
+      <tr class="go"><td class="t">17:33</td><td>zurück nach Veštar</td><td class="d">12 min</td></tr>
+      <tr><td class="t">17:45</td><td>Rückgabe</td><td class="d">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="links">
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sveti+Ivan+na+Pu%C4%8Dini+lighthouse+Rovinj" target="_blank" rel="noopener">Sveti Ivan</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Figarola+Rovinj" target="_blank" rel="noopener">Figarola</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Restoran+Viking+Limski+kanal" target="_blank" rel="noopener">Lim · Viking</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Sveta+Katarina+Rovinj" target="_blank" rel="noopener">Sveta Katarina</a>
+  </div>
 </div>
 
 <h2>Variante B — die entspannte Runde</h2>
 
-<div class="variant">
+<div class="variant pick">
   <div class="variant-head">
     <h3>Inselhopping ohne Fjord</h3>
-    <span class="badge">15 sm · 1,5 h Fahrt</span>
+    <span class="badge ok">Empfehlung · 16 sm</span>
   </div>
-  <p class="lead">Limski kanal weglassen, dafür doppelt so viel Zeit im Wasser — und rund 43 € weniger Sprit. Bei auffrischendem Westwind die klügere Wahl, weil alles im Inselschutz liegt. Verpflegung kommt hier aus der eigenen Kühltasche.</p>
+  <p class="lead">Vier Stopps, kaum Fahrzeit, über sechs Stunden im und am Wasser. Alles liegt im Inselschutz, also auch bei auffrischendem Westwind entspannt. Verpflegung kommt aus der Kühltasche.</p>
 
-  <a class="btn" href="https://www.google.com/maps/dir/Camping+Ve%C5%A1tar+Rovinj/Sveti+Ivan+na+Pu%C4%8Dini/Otok+Figarola+Rovinj/Otok+Banjole+Rovinj/Uvala+Kuvi+Rovinj/Camping+Ve%C5%A1tar+Rovinj" target="_blank" rel="noopener">Gesamte Route B auf Google Maps</a>
+  <svg class="map" viewBox="0 0 400 320" role="img" aria-label="Schematische Karte Variante B">
+    <rect width="400" height="320" fill="var(--sea)"/>
+    <path d="M400,320 L300,320 C302,302 320,292 311,276 L296,266 C281,256 291,241 286,231
+             L271,216 L291,201 L289,181 L301,166 L306,141 L301,119 L376,109 L379,99 L303,96
+             L301,81 L321,56 L351,31 L400,11 Z" fill="var(--land)"/>
+    <ellipse cx="266" cy="178" rx="11" ry="7" fill="var(--land)"/>
+    <ellipse cx="218" cy="199" rx="13" ry="8" fill="var(--land)"/>
+    <ellipse cx="208" cy="186" rx="7" ry="5" fill="var(--land)"/>
+    <ellipse cx="240" cy="241" rx="8" ry="5" fill="var(--land)"/>
+    <circle cx="95" cy="232" r="5" fill="var(--land)"/>
+    <polyline points="300,285 95,232 215,193 240,241 283,262 300,285"
+      fill="none" stroke="var(--ok)" stroke-width="2.8" stroke-dasharray="7 5"
+      stroke-linejoin="round" stroke-linecap="round"/>
+    <g font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">
+      <circle cx="300" cy="285" r="11" fill="var(--ok)"/><text x="300" y="289" fill="#fff">S</text>
+      <circle cx="95"  cy="232" r="11" fill="var(--ok)"/><text x="95"  y="236" fill="#fff">1</text>
+      <circle cx="215" cy="193" r="11" fill="var(--ok)"/><text x="215" y="197" fill="#fff">2</text>
+      <circle cx="240" cy="241" r="11" fill="var(--ok)"/><text x="240" y="245" fill="#fff">3</text>
+      <circle cx="283" cy="262" r="11" fill="var(--ok)"/><text x="283" y="266" fill="#fff">4</text>
+    </g>
+    <g font-size="10.5" fill="var(--ink)" font-family="system-ui,sans-serif" opacity=".78">
+      <text x="300" y="308" text-anchor="middle">Veštar</text>
+      <text x="95"  y="255" text-anchor="middle">Sv. Ivan</text>
+      <text x="196" y="215" text-anchor="end">Figarola</text>
+      <text x="222" y="262" text-anchor="end">Banjole</text>
+      <text x="262" y="281" text-anchor="end">Kuvi</text>
+      <text x="272" y="222" text-anchor="middle" opacity=".55">Rovinj</text>
+    </g>
+  </svg>
+  <p class="mapcap">Schematisch, nicht maßstabsgetreu. Zur Orientierung, nicht zur Navigation.</p>
 
-  <ol class="stops">
-    <li>
-      <span class="name">Sveti Ivan na Pučini</span><span class="leg">6 sm · 20 Min.</span>
-      <p>Wie in Variante A — früh raus, solange die Delfinchance am größten ist.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sveti+Ivan+na+Pu%C4%8Dini+lighthouse" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Figarola &amp; Crveni otok</span><span class="leg">4 sm · 15 Min.</span>
-      <p>Langer Bade- und Schnorchelstopp im türkisen Kanal.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Figarola+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Otok Banjole</span><span class="leg">2 sm · 10 Min.</span>
-      <p>Kleine bewaldete Insel südlich von Rovinj, deutlich ruhiger als die Crveni-otok-Ecke. Felsküste mit gutem Schnorchelgrund.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Banjole+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Uvala Kuvi</span><span class="leg">2 sm · 10 Min.</span>
-      <p>Flache Bucht auf dem Heimweg, direkt vor Veštar. Perfekt für den letzten Sprung ins Wasser.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Uvala+Kuvi+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-  </ol>
+  <dl class="minifacts">
+    <div><dt>Fahrzeit</dt><dd>0:51 h</dd></div>
+    <div><dt>Aufenthalt</dt><dd>6:24 h</dd></div>
+    <div><dt>Sprit</dt><dd>~40 €</dd></div>
+  </dl>
+
+  <table class="sched">
+    <thead><tr><th>Zeit</th><th>Station</th><th>Dauer</th></tr></thead>
+    <tbody>
+      <tr class="go"><td class="t">10:30</td><td>ab Veštar</td><td class="d">22 min</td></tr>
+      <tr><td class="t">10:52</td><td><strong>Sveti Ivan na Pučini</strong> — schnorcheln, Delfine</td><td class="d">1:30 h</td></tr>
+      <tr class="go"><td class="t">12:22</td><td>weiter</td><td class="d">10 min</td></tr>
+      <tr><td class="t">12:32</td><td><strong>Figarola</strong> — Mittag aus der Kühltasche, baden</td><td class="d">2:30 h</td></tr>
+      <tr class="go"><td class="t">15:02</td><td>weiter</td><td class="d">8 min</td></tr>
+      <tr><td class="t">15:10</td><td><strong>Otok Banjole</strong> — schnorcheln</td><td class="d">1:15 h</td></tr>
+      <tr class="go"><td class="t">16:25</td><td>weiter</td><td class="d">6 min</td></tr>
+      <tr><td class="t">16:31</td><td><strong>Uvala Kuvi</strong> — letztes Bad</td><td class="d">1:09 h</td></tr>
+      <tr class="go"><td class="t">17:40</td><td>zurück nach Veštar</td><td class="d">5 min</td></tr>
+      <tr><td class="t">17:45</td><td>Rückgabe</td><td class="d">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="links">
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sveti+Ivan+na+Pu%C4%8Dini+lighthouse+Rovinj" target="_blank" rel="noopener">Sveti Ivan</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Figarola+Rovinj" target="_blank" rel="noopener">Figarola</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Banjole+Rovinj" target="_blank" rel="noopener">Banjole</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Uvala+Kuvi+Rovinj" target="_blank" rel="noopener">Uvala Kuvi</a>
+  </div>
 </div>
 
 <h2>Variante C — die Genussrunde</h2>
 
 <div class="variant">
   <div class="variant-head">
-    <h3>Wenig fahren, lange essen</h3>
-    <span class="badge">18 sm · 1,2 h Fahrt</span>
+    <h3>Früh in den Fjord, lange essen</h3>
+    <span class="badge">28 sm</span>
   </div>
-  <p class="lead">Der lange Westschlag nach Sveti Ivan entfällt, dafür steht das Mittagessen im Limski kanal als Fixpunkt im Kalender — mit zwei Stunden Zeit am Tisch. Günstigste Variante beim Sprit, aber die Delfinchance sinkt deutlich, weil ihr nicht ins offene Wasser fahrt.</p>
+  <p class="lead">Direkt in den Limski kanal, um kurz vor zwölf am Kai sein — bevor die sieben Liegeplätze belegt sind. Zwei Stunden am Tisch, danach der ganze Nachmittag im türkisen Inselkanal. Der Abstecher nach Sveti Ivan entfällt, damit sinkt die Delfinchance deutlich.</p>
 
-  <a class="btn" href="https://www.google.com/maps/dir/Camping+Ve%C5%A1tar+Rovinj/Otok+Sveta+Katarina+Rovinj/Limski+kanal/Otok+Figarola+Rovinj/Camping+Ve%C5%A1tar+Rovinj" target="_blank" rel="noopener">Gesamte Route C auf Google Maps</a>
+  <svg class="map" viewBox="0 0 400 320" role="img" aria-label="Schematische Karte Variante C">
+    <rect width="400" height="320" fill="var(--sea)"/>
+    <path d="M400,320 L300,320 C302,302 320,292 311,276 L296,266 C281,256 291,241 286,231
+             L271,216 L291,201 L289,181 L301,166 L306,141 L301,119 L376,109 L379,99 L303,96
+             L301,81 L321,56 L351,31 L400,11 Z" fill="var(--land)"/>
+    <ellipse cx="266" cy="178" rx="11" ry="7" fill="var(--land)"/>
+    <ellipse cx="218" cy="199" rx="13" ry="8" fill="var(--land)"/>
+    <ellipse cx="208" cy="186" rx="7" ry="5" fill="var(--land)"/>
+    <ellipse cx="240" cy="241" rx="8" ry="5" fill="var(--land)"/>
+    <circle cx="95" cy="232" r="5" fill="var(--land)"/>
+    <polyline points="300,285 258,205 300,110 352,104 300,110 215,193 300,285"
+      fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="7 5"
+      stroke-linejoin="round" stroke-linecap="round"/>
+    <g font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">
+      <circle cx="300" cy="285" r="11" fill="var(--accent)"/><text x="300" y="289" fill="#fff">S</text>
+      <circle cx="352" cy="104" r="11" fill="var(--accent)"/><text x="352" y="108" fill="#fff">1</text>
+      <circle cx="215" cy="193" r="11" fill="var(--accent)"/><text x="215" y="197" fill="#fff">2</text>
+    </g>
+    <g font-size="10.5" fill="var(--ink)" font-family="system-ui,sans-serif" opacity=".78">
+      <text x="300" y="308" text-anchor="middle">Veštar</text>
+      <text x="352" y="130" text-anchor="middle">Lim · Restaurants</text>
+      <text x="196" y="215" text-anchor="end">Figarola</text>
+      <text x="272" y="234" text-anchor="middle" opacity=".55">Rovinj</text>
+    </g>
+  </svg>
+  <p class="mapcap">Schematisch, nicht maßstabsgetreu. Zur Orientierung, nicht zur Navigation.</p>
 
-  <ol class="stops">
-    <li>
-      <span class="name">Sveta Katarina</span><span class="leg">3 sm · 12 Min.</span>
-      <p>Kurzer Vormittagsstopp direkt vor der Altstadt. Erstes Bad, Kaffee aus der Thermoskanne, ankommen.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Sveta+Katarina+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-    <li>
-      <span class="name">Limski kanal — Mittagessen</span><span class="leg">6 sm · 25 Min.</span>
-      <p>Gegen 12:30 im Fjord sein, festmachen, essen. Zwei Stunden einplanen: Austern, Muscheln, frischer Fisch. Danach bleibt der Nachmittag komplett fürs Wasser.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Restaurant+Viking+Limski+kanal" target="_blank" rel="noopener">Restaurants öffnen</a>
-    </li>
-    <li>
-      <span class="name">Figarola &amp; Crveni otok</span><span class="leg">6 sm · 25 Min.</span>
-      <p>Der lange Nachmittagsstopp im türkisen Kanal. Schnorcheln, ankern, dösen — bis es Zeit für die letzten drei Seemeilen ist.</p>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Figarola+Rovinj" target="_blank" rel="noopener">Einzelpunkt öffnen</a>
-    </li>
-  </ol>
+  <dl class="minifacts">
+    <div><dt>Fahrzeit</dt><dd>2:39 h</dd></div>
+    <div><dt>Aufenthalt</dt><dd>4:36 h</dd></div>
+    <div><dt>Sprit</dt><dd>~65 €</dd></div>
+  </dl>
+
+  <table class="sched">
+    <thead><tr><th>Zeit</th><th>Station</th><th>Dauer</th></tr></thead>
+    <tbody>
+      <tr class="go"><td class="t">10:30</td><td>ab Veštar, ab 10:54 im Kanal mit 5 kn</td><td class="d">78 min</td></tr>
+      <tr><td class="t">11:48</td><td><strong>Limski kanal</strong> — Mittagessen, Steg noch frei</td><td class="d">2:00 h</td></tr>
+      <tr class="go"><td class="t">13:48</td><td>zurück durch den Kanal, dann zu den Inseln</td><td class="d">69 min</td></tr>
+      <tr><td class="t">14:57</td><td><strong>Figarola</strong> — langer Bade- und Schnorchelstopp</td><td class="d">2:36 h</td></tr>
+      <tr class="go"><td class="t">17:33</td><td>zurück nach Veštar</td><td class="d">12 min</td></tr>
+      <tr><td class="t">17:45</td><td>Rückgabe</td><td class="d">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="links">
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Restoran+Viking+Limski+kanal" target="_blank" rel="noopener">Lim · Viking</a>
+    <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Otok+Figarola+Rovinj" target="_blank" rel="noopener">Figarola</a>
+  </div>
 </div>
 
 <div class="note">
-  <h3>Zu den Google-Maps-Routenlinks</h3>
-  <p>Google kennt keinen Bootsmodus und kann über Wasser keine Route berechnen. Die Links setzen alle Stopps in der richtigen Reihenfolge als Wegpunkte — für Orientierung und Reihenfolge reicht das. Navigiert wird mit dem GPS an Bord.</p>
+  <h3>Warum es hier keinen „ganze Route"-Link gibt</h3>
+  <p>Google Maps kennt keinen Bootsmodus. Eine Route über Wasser lässt sich nicht berechnen, und ein Link mit mehreren Wegpunkten läuft ins Leere. Deshalb: die schematischen Karten oben für den Überblick, die Einzellinks für jeden Stopp — und navigiert wird ohnehin mit dem GPS an Bord.</p>
 </div>
 
 <h2>Verpflegung unterwegs</h2>
@@ -276,8 +371,8 @@
     <h3>Limski kanal — Viking, Fjord, Tony's Oyster Shack</h3>
     <span class="tag yes">Anlegen möglich</span>
   </div>
-  <p>Die einzige wirklich gute Einkehr auf der Strecke. Am hinteren Ende des Fjords liegt ein Kai mit sieben Mooringplätzen für Boote bis 15 Meter bei rund 3 Metern Wassertiefe — für ein 6,5-m-RIB völlig ausreichend. Das <strong>Viking</strong> ist der Klassiker, spezialisiert auf Muscheln und Fisch aus dem Kanal. <strong>Tony's Oyster Shack</strong> liegt etwa 200 Meter östlich davon und serviert Austern direkt aus dem Wasser.</p>
-  <p><strong>Der Haken:</strong> sieben Plätze sind schnell belegt. An einem Samstag im September lieber <strong>vor 12:30 oder nach 14:30</strong> ankommen — oder vorher anrufen und einen Tisch samt Liegeplatz ansagen.</p>
+  <p>Die einzige echte Einkehr auf der Strecke. Am hinteren Ende des Fjords liegt ein Kai mit sieben Mooringplätzen für Boote bis 15 Meter bei rund 3 Metern Wassertiefe — für ein 6,5-m-RIB reichlich. Das <strong>Viking</strong> ist der Klassiker mit Muscheln und Fisch aus dem Kanal, <strong>Tony's Oyster Shack</strong> liegt etwa 200 Meter östlich und serviert Austern direkt aus dem Wasser.</p>
+  <p><strong>Der Haken:</strong> sieben Plätze sind an einem Samstag schnell belegt. Deshalb ist Variante C so getaktet, dass ihr um 11:48 da seid. Wer erst um 13:30 kommt, steht womöglich vor vollem Steg.</p>
 </div>
 
 <div class="food">
@@ -285,7 +380,7 @@
     <h3>Crveni otok — Hotelanlage mit Strandbars</h3>
     <span class="tag maybe">Nur Getränkestopp</span>
   </div>
-  <p>Auf der Roten Insel gibt es Restaurants und Strandbars, und ein Anleger für das Taxiboot ist vorhanden. Liegeplätze für Privatboote sind allerdings knapp und nicht garantiert. Als kurzer Getränke- oder Eisstopp machbar, als geplantes Mittagessen zu unsicher.</p>
+  <p>Restaurants und Strandbars sind da, ein Anleger für das Taxiboot auch. Liegeplätze für Privatboote sind aber knapp und nicht garantiert. Als kurzer Getränke- oder Eisstopp machbar, als geplantes Mittagessen zu unsicher.</p>
 </div>
 
 <div class="food">
@@ -293,38 +388,12 @@
     <h3>Rovinj Altstadt &amp; ACI Marina</h3>
     <span class="tag no">Nicht empfehlenswert</span>
   </div>
-  <p>Verlockend, aber unpraktisch: Der Stadthafen ist großen Yachten vorbehalten, und die ACI Marina berechnet für Boote bis 12 Meter rund 158 € pro Tag — für einen Mittagsstopp absurd. Am Außenkai liegt man außerdem nur bei sehr wenig Schwell ruhig. Rovinj lieber an einem anderen Tag zu Fuß.</p>
-</div>
-
-<div class="food">
-  <div class="food-head">
-    <h3>Zurück nach Veštar</h3>
-    <span class="tag maybe">Notlösung</span>
-  </div>
-  <p>Der Campingplatz hat eigene Gastronomie, und ihr legt ohnehin dort an. Als Plan B völlig okay — kostet aber Fahrzeit und Sprit für eine Extrarunde.</p>
+  <p>Der Stadthafen ist großen Yachten vorbehalten, und die ACI Marina berechnet für Boote bis 12 Meter rund 158 € pro Tag — für einen Mittagsstopp absurd. Am Außenkai liegt man außerdem nur bei sehr wenig Schwell ruhig. Rovinj lieber an einem anderen Tag zu Fuß.</p>
 </div>
 
 <div class="note">
-  <h3>Selbstverpflegung ist in jedem Fall Pflicht</h3>
-  <p>Auch mit Restaurantstopp gehören an Bord: <strong>2–3 Liter Wasser pro Person</strong>, Obst, Brot, etwas Salziges. Auf dem Wasser trinkt man deutlich mehr als gedacht, und zwischen zwei Buchten gibt es nichts. Frag Alex beim Briefing, ob eine Kühlbox an Bord ist — sonst eigene Kühltasche mitnehmen.</p>
-</div>
-
-<h2>Tagesablauf</h2>
-
-<div class="tablewrap">
-<table>
-  <thead><tr><th>Zeit</th><th>Was</th></tr></thead>
-  <tbody>
-    <tr><td class="n">09:45</td><td>An der Marina Veštar sein, Standort per WhatsApp an Alex schicken</td></tr>
-    <tr><td class="n">10:00</td><td>Übernahme: Briefing, Zählerstand fotografieren, rundum filmen, Überweisung senden</td></tr>
-    <tr><td class="n">10:30</td><td>Ablegen</td></tr>
-    <tr><td class="n">12:15</td><td>Im Limski kanal sein, festmachen, essen (Variante A und C)</td></tr>
-    <tr><td class="n">14:30</td><td>Ablegen Richtung Inseln</td></tr>
-    <tr><td class="n">15:00</td><td>Langer Bade- und Schnorchelstopp</td></tr>
-    <tr><td class="n">17:15</td><td>Rückfahrt antreten</td></tr>
-    <tr><td class="n">17:45</td><td>Zurück in Veštar, Zählerstand ablesen, Sprit bar bezahlen</td></tr>
-  </tbody>
-</table>
+  <h3>Proviant gehört in jedem Fall an Bord</h3>
+  <p>Auch mit Restaurantstopp: <strong>2–3 Liter Wasser pro Person</strong>, Obst, Brot, etwas Salziges. Auf dem Wasser trinkt man deutlich mehr als gedacht, und zwischen zwei Buchten gibt es nichts. Frag Alex beim Briefing, ob eine Kühlbox an Bord ist — sonst eigene Kühltasche mitnehmen.</p>
 </div>
 
 <h2>Regeln in kroatischen Gewässern</h2>
@@ -335,30 +404,29 @@
 </div>
 
 <ul class="rules">
-  <li><strong>0,5 Promille für den Bootsführer</strong>Gleiche Grenze wie im Straßenverkehr — und beim Mittagessen im Fjord der Punkt, an dem es praktisch wird. Einer bleibt beim Wasser.</li>
+  <li><strong>Limski kanal: 5 Knoten</strong>Sechs bis sieben werden toleriert, darüber Bußgelder ab 130 €. Der Kanal ist rund 10 Kilometer lang — das ist der Grund für die lange Fahrzeit in den Varianten A und C. Ankern nur vor den Liegeplätzen, der Grund ist unrein; zwischen den Muschelfarmen hat man nichts verloren.</li>
+  <li><strong>0,5 Promille für den Bootsführer</strong>Gleiche Grenze wie im Straßenverkehr — beim Mittagessen im Fjord bleibt einer beim Wasser.</li>
   <li><strong>Mindestabstand zur Küste: 50 Meter</strong>Für Boote bis 15 Meter Länge. Innerhalb dieser Zone und in Badebereichen nur Schrittgeschwindigkeit.</li>
-  <li><strong>Limski kanal: 5 Knoten</strong>Sechs bis sieben werden toleriert, darüber Bußgelder ab 130 €. Ankern nur vor den Liegeplätzen — der Grund ist unrein. Zwischen den Muschelfarmen hat man nichts verloren.</li>
   <li><strong>Delfine</strong>Nicht hinterherfahren. Motor in den Leerlauf, Kurs halten oder stoppen und warten — neugierig sind sie selbst. Verfolgen, sich zwischen Tiere setzen oder eine Gruppe teilen ist verboten.</li>
   <li><strong>Ankern auf Sand, nie auf Seegras</strong>Posidonia ist geschützt, und der Anker hält darin ohnehin schlecht. Im Echolot gut sichtbar: hell ist Sand, dunkel ist Seegras.</li>
   <li><strong>Flachwasseralarm anlassen</strong>Grundberührung ist das einzige realistische Schadensrisiko, und für Propellerschäden haftet ihr. In Buchten langsam hinein, zum Anlanden lieber schwimmen als auffahren.</li>
   <li><strong>Brijuni auslassen</strong>Rund 20 sm einfache Strecke, Nationalpark mit Genehmigungspflicht und Ankerverbot. Das frisst den ganzen Tag und den Tank.</li>
 </ul>
 
-<h2>Kosten</h2>
+<h2>Übergabe und Abrechnung</h2>
 
 <div class="tablewrap">
-<table>
-  <thead><tr><th>Position</th><th class="n">A</th><th class="n">B</th><th class="n">C</th></tr></thead>
+<table class="cmp">
   <tbody>
-    <tr><td>Boot, 10:00–18:00</td><td class="n">250 €</td><td class="n">250 €</td><td class="n">250 €</td></tr>
-    <tr><td>Sprit</td><td class="n">~110 €</td><td class="n">~67 €</td><td class="n">~53 €</td></tr>
-    <tr><td>Kaution</td><td class="n">0 €</td><td class="n">0 €</td><td class="n">0 €</td></tr>
-    <tr class="sum"><td>Boot + Sprit</td><td class="n">~360 €</td><td class="n">~317 €</td><td class="n">~303 €</td></tr>
-    <tr><td>Essen für zwei (optional)</td><td class="n">~60–90 €</td><td class="n">—</td><td class="n">~60–90 €</td></tr>
+    <tr><td>09:45</td><td>An der Marina Veštar sein, Standort per WhatsApp an Alex schicken</td></tr>
+    <tr><td>10:00</td><td>Übernahme: Briefing, Zählerstand fotografieren, einmal rundum filmen</td></tr>
+    <tr><td>10:15</td><td>Echtzeitüberweisung über 250 € senden, Alex prüft den Eingang</td></tr>
+    <tr><td>10:30</td><td>Ablegen</td></tr>
+    <tr><td>17:45</td><td>Zurück, Zählerstand ablesen, verbrauchte Liter bar bezahlen</td></tr>
   </tbody>
 </table>
 </div>
-<p class="cap">Grundlage: Mercury F150, 22–28 l/h bei Marschfahrt, 1,67 €/l Eurosuper 95. Abgerechnet wird nach Bordcomputer — der Startwert wird bei Übergabe fotografiert, bezahlt wird bar. Das Boot per Echtzeitüberweisung bei Übergabe. Kleinere Schäden wie Propeller oder Anker gehen zulasten des Mieters.</p>
+<p class="cap">Boot 250 € per Echtzeitüberweisung, Sprit bar nach Bordcomputer zum Tankstellenpreis von 1,67 €/l. Keine Kaution. Kleinere Schäden wie Propeller oder Anker gehen zulasten des Mieters.</p>
 
 <h2>Checkliste</h2>
 
@@ -366,7 +434,7 @@
   <ul>
     <li>Sportbootführerschein See im Original</li>
     <li>Personalausweis</li>
-    <li>Bargeld für den Sprit und das Restaurant, ca. 300 €</li>
+    <li>Bargeld: ca. 100 € für Sprit, plus 100 € wenn ihr essen geht</li>
     <li>Banking-App vorbereitet, IBAN von Alex</li>
     <li>Kühltasche: Wasser 2–3 l pro Person, Obst, Brot, etwas Salziges</li>
     <li>Schnorchelmasken, Handtücher, Badesachen</li>
@@ -374,7 +442,6 @@
     <li>Wasserdichte Hülle oder Beutel fürs Handy</li>
     <li>Powerbank — das Handy ist Navigation und Kamera zugleich</li>
     <li>Leichte Jacke für die Rückfahrt, auf dem Wasser wird es zugig</li>
-    <li>Bei Übernahme: Zählerstand fotografieren, einmal rundum filmen</li>
   </ul>
 </div>
 
